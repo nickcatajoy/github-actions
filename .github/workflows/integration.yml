@@ -25,7 +25,4 @@ jobs:
         cache: 'npm'
     - run: npm ci
 
-  test: 
-    needs: [build]
-    name: "Doing sum test hehehe"
     
