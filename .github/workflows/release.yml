@@ -1,12 +1,13 @@
 name: PUSHING TO DOCKERHUB
 
 on:
-  merge: [main]
+  push:
+    branches: [main]
 
 jobs: 
   deploy: 
     runs-on: ubuntu-latest
-
+    
     steps: 
       - uses: actions/checkout@v3
       - run: docker build -t . nickskiejoi/github-actions
