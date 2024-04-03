@@ -1,0 +1,14 @@
+name: PUSHING TO DOCKERHUB
+
+on:
+  merge: [main]
+
+jobs: 
+  deploy: 
+    runs-on: ubuntu-latest
+
+    steps: 
+      - uses: actions/checkout@v3
+      - run: docker build -t . nickskiejoi/github-actions
+      - run: echo "${{ secrets.DOCKER_HUB_PASSWORD}}" | docker login -u ${{ secrets.DOCKER_HUB_USERNAME }} --password stdin
+      - run: docker docker push nickskiejoi/github-actions
