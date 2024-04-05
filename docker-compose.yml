@@ -1,0 +1,23 @@
+version: "3"
+
+services:
+  backend: 
+    container_name: node_backend
+    image: nickskiejoi/github-actions
+    restart: always
+    environment:
+     - PORT=3000
+    expose: 
+      - 3000
+
+    ports:
+      - 3000:3000
+
+  watchtower:
+    container_name: watchtower
+    image: containrrr/watchtower
+    environment:
+      - WATCHTOWER_CLEANUP=true
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    command: --interval 30 node_backend
